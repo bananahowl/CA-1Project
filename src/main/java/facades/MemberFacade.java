@@ -1,6 +1,7 @@
 package facades;
 
 import entities.GroupMember;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
