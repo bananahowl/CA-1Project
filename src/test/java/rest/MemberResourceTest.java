@@ -1,11 +1,14 @@
 package rest;
 
 import entities.GroupMember;
+import facades.MemberFacade;
 import utils.EMF_Creator;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 import io.restassured.parsing.Parser;
 import java.net.URI;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.core.UriBuilder;
@@ -14,6 +17,8 @@ import org.glassfish.grizzly.http.util.HttpStatus;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasItems;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,6 +39,7 @@ public class MemberResourceTest {
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
     private static EntityManagerFactory emf;
+    private static MemberFacade facade;
     private GroupMember m1 = new GroupMember("Simone", "Gul");
     private GroupMember m2 = new GroupMember("Grethe", "Grøn");
     private GroupMember m3 = new GroupMember("Ahmed", "Rød");
@@ -52,22 +58,21 @@ public class MemberResourceTest {
         //NOT Required if you use the version of EMF_Creator.createEntityManagerFactory used above        
         //System.setProperty("IS_TEST", TEST_DB);
         //We are using the database on the virtual Vagrant image, so username password are the same for all dev-databases
-        
         httpServer = startServer();
-        
+
         //Setup RestAssured
         RestAssured.baseURI = SERVER_URL;
         RestAssured.port = SERVER_PORT;
-   
+
         RestAssured.defaultParser = Parser.JSON;
     }
-    
+
     @AfterAll
-    public static void closeTestServer(){
+    public static void closeTestServer() {
         //System.in.read();
-         httpServer.shutdownNow();
+        httpServer.shutdownNow();
     }
-    
+
     // Setup the DataBase (used by the test-server and this test) in a known state BEFORE EACH TEST
     //TODO -- Make sure to change the script below to use YOUR OWN entity class
     @BeforeEach
@@ -81,37 +86,86 @@ public class MemberResourceTest {
             em.persist(m3);
             em.persist(m4);
             em.persist(m5);
-            
+
             em.getTransaction().commit();
         } finally {
             em.close();
         }
     }
-    
+
     @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
         given().when().get("/member").then().statusCode(200);
     }
-   
+
     //This test assumes the database contains two rows
     @Test
     public void testDummyMsg() throws Exception {
         given()
-        .contentType("application/json")
-        .get("/member/").then()
-        .assertThat()
-        .statusCode(HttpStatus.OK_200.getStatusCode())
-        .body("msg", equalTo("Hello World"));   
+                .contentType("application/json")
+                .get("/member/").then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("msg", equalTo("Hello World"));
     }
-    
+
     @Test
     public void testCount() throws Exception {
         given()
-        .contentType("application/json")
-        .get("/member/count").then()
-        .assertThat()
-        .statusCode(HttpStatus.OK_200.getStatusCode())
-        .body("count", equalTo(5));   
+                .contentType("application/json")
+                .get("/member/count").then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("count", equalTo(5));
     }
+
+    /**
+     * This method is checking the all method by seeing if the names below exist on the list
+     */
+    @Test
+    public void testMembersIsOnList() {
+        given()
+                .contentType("application/json")
+                .get("/member/all").then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("name", hasItems("Ahmed", "Grethe", "Simone"));
+        System.out.println(m2);
+    }
+    
+
+    /**
+     * This method is testing if it is possible to get a member by typing their name
+     * As you can see below the name is simone and to see if it gets the right one we are checking if simones color is gul
+     */
+    @Test
+    public void getMemberByNameTest() {
+
+        when().
+                get("/member/name/Simone").
+                then().
+                statusCode(200).
+                body("color", hasItem("Gul"));
+    }
+    
+    
+    /**
+     * This method will get a member but its id 
+     * NOTICE: Somehow the id is changing and therefore it wont work at all times and are uncomment
+     */
+    
+    /*
+    @Test
+    public void getMemberByIDTest() {
+
+        when().
+                get("/member/368").
+                then().
+                statusCode(200).
+                body("name", hasItem("Grethe"));
+    }*/
+    
+    
+    
 }
