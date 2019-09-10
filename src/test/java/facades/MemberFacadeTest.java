@@ -1,16 +1,17 @@
 package facades;
 
 import entities.GroupMember;
+import java.util.List;
 import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.Settings;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
 
@@ -86,8 +87,31 @@ public class MemberFacadeTest {
 
     // TODO: Delete or change this method 
     @Test
-    public void testAFacadeMethod() {
+    public void countMembersTest() {
         assertEquals(5, facade.getMemberCount(), "Expects five rows in the database");
     }
-
+    
+    @Test
+    public void findMemberByIdTest(){
+        GroupMember member = facade.getMemberByID(m4.getId());
+        assertEquals(member.getName(),"Frederik");
+         
+    }
+    
+    /* mangler denne
+    @Test
+    public void getMemberByNameTest(){
+        
+    }
+    */
+    
+    @Test
+    public void addMemberTest(){
+        String name = "Caroline";
+        String color = "Grøn";
+        GroupMember member = facade.addMember(name, color);
+        assertEquals(6, facade.getMemberCount());
+        
+        
+    }
 }
