@@ -1,6 +1,6 @@
 package rest;
 
-import entities.RenameMe;
+import entities.GroupMember;
 import utils.EMF_Creator;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
@@ -24,7 +24,7 @@ import utils.EMF_Creator.Strategy;
 
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
-public class RenameMeResourceTest {
+public class MemberResourceTest {
 
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
@@ -34,6 +34,11 @@ public class RenameMeResourceTest {
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
     private static EntityManagerFactory emf;
+    private GroupMember m1 = new GroupMember("Simone", "Gul");
+    private GroupMember m2 = new GroupMember("Grethe", "Grøn");
+    private GroupMember m3 = new GroupMember("Ahmed", "Rød");
+    private GroupMember m4 = new GroupMember("Frederik", "Gul");
+    private GroupMember m5 = new GroupMember("Emil", "Gul");
 
     static HttpServer startServer() {
         ResourceConfig rc = ResourceConfig.forApplication(new ApplicationConfig());
@@ -70,10 +75,13 @@ public class RenameMeResourceTest {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(new RenameMe("Some txt","More text"));
-            em.persist(new RenameMe("aaa","bbb"));
-           
+            em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
+            em.persist(m1);
+            em.persist(m2);
+            em.persist(m3);
+            em.persist(m4);
+            em.persist(m5);
+            
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -104,6 +112,6 @@ public class RenameMeResourceTest {
         .get("/xxx/count").then()
         .assertThat()
         .statusCode(HttpStatus.OK_200.getStatusCode())
-        .body("count", equalTo(2));   
+        .body("count", equalTo(5));   
     }
 }
