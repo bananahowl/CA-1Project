@@ -5,19 +5,19 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
+import javax.persistence.TypedQuery;
 
 public class MemberFacade {
 
     private static MemberFacade instance;
     private static EntityManagerFactory emf;
-    
+
     //Private Constructor to ensure Singleton
-    private MemberFacade() {}
-    
-    
+    private MemberFacade() {
+    }
+
     /**
-     * 
+     *
      * @param _emf
      * @return an instance of this facade class.
      */
@@ -32,18 +32,61 @@ public class MemberFacade {
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
+
     //TODO Remove/Change this before use
-    public long getMemberCount(){
+    public long getMemberCount() {
         EntityManager em = emf.createEntityManager();
-        try{
-            long memberCount = (long)em.createQuery("SELECT COUNT(m) FROM GroupMember m").getSingleResult();
+        try {
+            long memberCount = (long) em.createQuery("SELECT COUNT(m) FROM GroupMember m").getSingleResult();
             return memberCount;
-        }finally{  
+        } finally {
             em.close();
         }
-        
     }
-    
 
+    public List<GroupMember> getAllGroupMembers() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery query
+                    = em.createQuery("Select m from GroupMember m", GroupMember.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public GroupMember getMemberByID(long id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            GroupMember member = em.find(GroupMember.class, id);
+            return member;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<GroupMember> getMemberByName(String name) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<GroupMember> query
+                    = em.createQuery("Select m from GroupMember m where m.name =:name", GroupMember.class);
+            return query.setParameter("name", name).getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public GroupMember addMember(String name, String color) {
+        GroupMember member = new GroupMember();
+        member = new GroupMember(name, color);
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(member);
+            em.getTransaction().commit();
+            return member;
+        } finally {
+            em.close();
+        }
+    }
 }
