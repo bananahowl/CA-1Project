@@ -61,11 +61,11 @@ public class JokeResource {
         return GSON.toJson(meme);
     }
     
-//    @Path("name/{name}")
-//    @GET
-//    @Produces({MediaType.APPLICATION_JSON})
-//    public String getMemberByName(@PathParam ("name") String name) {
-//        List <GroupMember> member = FACADE.getMemberByName(name);
-//        return GSON.toJson(member);
-//    }
+    @Path("name/{name}")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getJokeByName(@PathParam ("name") String name) {
+        List <Joke> meme = FACADE.getJokeByName(name);
+        return GSON.toJson(meme);
+    } 
 }

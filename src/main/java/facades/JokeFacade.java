@@ -66,20 +66,20 @@ public class JokeFacade {
         }
     }
 
-//    public List<GroupMember> getMemberByName(String name) {
-//        EntityManager em = emf.createEntityManager();
-//        try {
-//            TypedQuery<GroupMember> query
-//                    = em.createQuery("Select m from GroupMember m where m.name =:name", GroupMember.class);
-//            return query.setParameter("name", name).getResultList();
-//        } finally {
-//            em.close();
-//        }
-//    }
+    public List<Joke> getJokeByName(String name) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Joke> query
+                    = em.createQuery("Select m from Joke m where m.name =:name", Joke.class);
+            return query.setParameter("name", name).getResultList();
+        } finally {
+            em.close();
+        }
+    }
 
-    public Joke addMember(String name, String color) {
+    public Joke addMember(String name, String color, String description) {
         Joke meme = new Joke();
-        meme = new Joke(name, color);
+        meme = new Joke(name, color,description);
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();

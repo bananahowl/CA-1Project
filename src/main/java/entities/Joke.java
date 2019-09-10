@@ -16,17 +16,27 @@ public class Joke implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    private String color;
+    private String name ,color, description;
+    
     
     public Joke() {
     }
 
-    public Joke(String name, String color) {
+    public Joke(String name, String color, String description) {
         this.name = name;
         this.color = color;
+        this.description = description;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+  
     public long getId() {
         return id;
     }
@@ -53,8 +63,9 @@ public class Joke implements Serializable {
 
     @Override
     public String toString() {
-        return "Member{" + "id=" + id + ", name=" + name + ", color=" + color + '}';
+        return "Joke{" + "id=" + id + ", name=" + name + ", color=" + color + ", description=" + description + '}';
     }
-       
+
+
     
 }
