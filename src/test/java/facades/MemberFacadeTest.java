@@ -123,7 +123,7 @@ public class MemberFacadeTest {
         m.add(m2);
         m.add(m3);
         m.add(m4);
-        m.add(m4);
+        m.add(m5);
         
         assertNotNull(members);
         assertNotNull(m);

@@ -20,3 +20,11 @@ function Reload() {
     document.getElementById("2").style.color = "red"
     document.getElementById("3").style.color = "yellow"
 }
+
+fetch('https://pencilash.com/Member/api/member/all')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
