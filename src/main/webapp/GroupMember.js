@@ -20,6 +20,7 @@ function Reload() {
     document.getElementById("2").style.color = "red"
     document.getElementById("3").style.color = "yellow"
 }
+<<<<<<< HEAD
  */
 
 const btn1= document.getElementById("btn");
@@ -28,7 +29,7 @@ btn1.onclick = function(){
     
     var url = document.location.origin +'/jpareststarter/api/member/all';
     fetch(url)
-  .then(res => res.json()) //in flow1, just do it
+  .then(res => res.json()) //get at json array 
   .then(data => {
    // Inside this callback, and only here, the response data is available
    console.log("data",data);
@@ -52,3 +53,4 @@ btn1.onclick = function(){
 //    
 //  });
 }
+

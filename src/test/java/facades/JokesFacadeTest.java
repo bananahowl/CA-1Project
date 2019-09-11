@@ -25,7 +25,7 @@ import utils.EMF_Creator.Strategy;
 
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
-public class MemberFacadeTest {
+public class JokesFacadeTest {
 
     private static EntityManagerFactory emf;
     private static MemberFacade facade;
@@ -37,7 +37,7 @@ public class MemberFacadeTest {
     
     
 
-    public MemberFacadeTest() {
+    public JokesFacadeTest() {
     }
 
     //@BeforeAll
@@ -123,7 +123,7 @@ public class MemberFacadeTest {
         m.add(m2);
         m.add(m3);
         m.add(m4);
-        m.add(m5);
+        m.add(m4);
         
         assertNotNull(members);
         assertNotNull(m);

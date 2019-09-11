@@ -38,7 +38,7 @@ public class JokeFacade {
     public long getJokeCount() {
         EntityManager em = emf.createEntityManager();
         try {
-            long JokeCount = (long) em.createQuery("SELECT COUNT(m) FROM Joke m").getSingleResult();
+            long JokeCount = (long) em.createQuery("SELECT COUNT(j) FROM Joke j").getSingleResult();
             return JokeCount;
         } finally {
             em.close();
@@ -49,7 +49,7 @@ public class JokeFacade {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery query
-                    = em.createQuery("Select m from Joke m", Joke.class);
+                    = em.createQuery("Select j from Joke j", Joke.class);
             return query.getResultList();
         } finally {
             em.close();
@@ -70,14 +70,14 @@ public class JokeFacade {
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<Joke> query
-                    = em.createQuery("Select m from Joke m where m.name =:name", Joke.class);
+                    = em.createQuery("Select j from Joke j where j.name =:name", Joke.class);
             return query.setParameter("name", name).getResultList();
         } finally {
             em.close();
         }
     }
 
-    public Joke addMember(String name, String color, String description) {
+    public Joke addJoke(String name, String color, String description) {
         Joke meme = new Joke();
         meme = new Joke(name, color,description);
         EntityManager em = emf.createEntityManager();
