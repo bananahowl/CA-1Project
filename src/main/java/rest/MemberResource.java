@@ -60,14 +60,14 @@ public class MemberResource {
         GroupMember member = FACADE.getMemberByID(id);
         return GSON.toJson(member);
     }
-     @Path("/populate")
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    public String populate() {
-        
-         FACADE.populate();
-        return "{\"msg\":\"Done\"}";
-    }
+//     @Path("/populate")
+//    @GET
+//    @Produces({MediaType.APPLICATION_JSON})
+//    public String populate() {
+//        
+//         FACADE.populate();
+//        return "{\"msg\":\"Done\"}";
+//    }
     
     @Path("name/{name}")
     @GET

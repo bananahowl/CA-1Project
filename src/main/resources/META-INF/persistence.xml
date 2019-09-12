@@ -6,10 +6,22 @@
     <class>entities.GroupMember</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <!-- DO NOT remove the line below. It's not set by the  entityUtils.EMF_Creator -->
+<!--  //     DO NOT remove the line below. It's not set by the  entityUtils.EMF_Creator 
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <!-- The missing values are added by entityUtils.EMF_Creator -->
+     //  The missing values are added by entityUtils.EMF_Creator 
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      -->
+      
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/startcode"/>
+      <property name="javax.persistence.jdbc.user" value="dev"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="ax2"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+<!--          <property name="javax.persistence.jdbc.url" value="jdbc:mysql://165.22.67.246:3306/Week1Day5"/>
+        <property name="javax.persistence.jdbc.user" value="emil"/>
+        <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        <property name="javax.persistence.jdbc.password" value="skolekode1235"/>
+        <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->
     </properties>
   </persistence-unit>
 </persistence>
