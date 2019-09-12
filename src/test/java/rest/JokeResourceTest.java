@@ -117,7 +117,6 @@ public class JokeResourceTest {
                 .body("name", hasItems("Frøen", "Giraf", "Isterning"));
         System.out.println(j2);
     }
-    
 
     @Test
     public void getMemberByNameTest() {
