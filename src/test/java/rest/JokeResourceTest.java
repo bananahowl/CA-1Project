@@ -129,5 +129,4 @@ public class JokeResourceTest {
                 body("color", hasItem("Gul"));
     }
     
-    
 }
