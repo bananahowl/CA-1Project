@@ -36,11 +36,6 @@ public class JokesFacadeTest {
     private Joke j4 = new Joke("Dumb joke", "Gul","Them Shoes");
     private Joke j5 = new Joke("Dumb joke", "Gul","LIGMA NUTZ");
 
-//    private GroupMember m1 = new GroupMember("Simone", "Gul");
-//    private GroupMember m2 = new GroupMember("Grethe", "Grøn");
-//    private GroupMember m3 = new GroupMember("Ahmed", "Rød");
-//    private GroupMember m4 = new GroupMember("Frederik", "Gul");
-//    private GroupMember m5 = new GroupMember("Emil", "Gul");
 
     public JokesFacadeTest() {
     }
@@ -97,32 +92,18 @@ public class JokesFacadeTest {
 //        Remove any data after each test was run
     }
 
-    /**
-     * This method check if all of the groupmembers exists on the list
-     */
-    
     @Test
     public void countJokesTest() {
         System.out.println(facade.getJokeCount());
         assertEquals(5, facade.getJokeCount(),"Expects five rows in the database");
     }
 
-    /**
-     * This method check if a members id matches his name
-     */
     @Test
     public void findJokeByIdTest() {
         Joke joke = facade.getJokeByID(j4.getId());
         assertEquals(joke.getName(), "Dumb joke");
     }
-
-    /**
-     * This method start checking if the list is null, if not it will compare
-     * the list.size with the actual amount having some problems with this one -
-     * it wont be green when i use assertEquals(m, members) the omit is 4 ish
-     * wrong
-     */
-    
+ 
     @Test
     public void checkListAreEqualTest() {
         List<Joke> jokes = facade.getAllJokes();
@@ -139,10 +120,6 @@ public class JokesFacadeTest {
         assertEquals(jokes.size(), m.size());
     }
 
-    /**
-     * This method check if it is possible to get a members information by only
-     * typing their name
-     */
     @Test
     public void getJokeByNameTest() {
         List<Joke> jokes = facade.getJokeByName(j2.getName());
