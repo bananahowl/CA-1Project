@@ -1,6 +1,7 @@
 package facades;
 
 import entities.GroupMember;
+import entities.Joke;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,14 +29,18 @@ import utils.EMF_Creator.Strategy;
 public class JokesFacadeTest {
 
     private static EntityManagerFactory emf;
-    private static MemberFacade facade;
-    private GroupMember m1 = new GroupMember("Simone", "Gul");
-    private GroupMember m2 = new GroupMember("Grethe", "Grøn");
-    private GroupMember m3 = new GroupMember("Ahmed", "Rød");
-    private GroupMember m4 = new GroupMember("Frederik", "Gul");
-    private GroupMember m5 = new GroupMember("Emil", "Gul");
-    
-    
+    private static JokeFacade facade;
+    private Joke j1 = new Joke("Dumb joke","Rød","THESE NUTZ");
+    private Joke j2 = new Joke("Inside joke","Rød","YEE BOI" );
+    private Joke j3 = new Joke("Dumb joke", "Gul","What did the dragon say to the knigth, \"ah man more can food\" ");
+    private Joke j4 = new Joke("Dumb joke", "Gul","Them Shoes");
+    private Joke j5 = new Joke("Dumb joke", "Gul","LIGMA NUTZ");
+
+//    private GroupMember m1 = new GroupMember("Simone", "Gul");
+//    private GroupMember m2 = new GroupMember("Grethe", "Grøn");
+//    private GroupMember m3 = new GroupMember("Ahmed", "Rød");
+//    private GroupMember m4 = new GroupMember("Frederik", "Gul");
+//    private GroupMember m5 = new GroupMember("Emil", "Gul");
 
     public JokesFacadeTest() {
     }
@@ -48,7 +53,7 @@ public class JokesFacadeTest {
                 "dev",
                 "ax2",
                 EMF_Creator.Strategy.CREATE);
-        facade = MemberFacade.getMemberFacade(emf);
+        facade = JokeFacade.getJokeFacade(emf);
     }
 
     /*   **** HINT **** 
@@ -59,8 +64,8 @@ public class JokesFacadeTest {
      */
     @BeforeAll
     public static void setUpClassV2() {
-       emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST,Strategy.DROP_AND_CREATE);
-       facade = MemberFacade.getMemberFacade(emf);
+        emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
+        facade = JokeFacade.getJokeFacade(emf);
     }
 
     @AfterAll
@@ -75,13 +80,12 @@ public class JokesFacadeTest {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
-            em.persist(m1);
-            em.persist(m2);
-            em.persist(m3);
-            em.persist(m4);
-            em.persist(m5);
-            
+            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            em.persist(j1);
+            em.persist(j2);
+            em.persist(j3);
+            em.persist(j4);
+            em.persist(j5);              
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -96,60 +100,64 @@ public class JokesFacadeTest {
     /**
      * This method check if all of the groupmembers exists on the list
      */
+    
     @Test
-    public void countMembersTest() {
-        assertEquals(5, facade.getMemberCount(), "Expects five rows in the database");
+    public void countJokesTest() {
+        System.out.println(facade.getJokeCount());
+        assertEquals(5, facade.getJokeCount(),"Expects five rows in the database");
     }
-    
-    
+
     /**
      * This method check if a members id matches his name
      */
     @Test
-    public void findMemberByIdTest(){
-        GroupMember member = facade.getMemberByID(m4.getId());
-        assertEquals(member.getName(),"Frederik"); 
+    public void findJokeByIdTest() {
+        Joke joke = facade.getJokeByID(j4.getId());
+        assertEquals(joke.getName(), "Dumb joke");
     }
-    
+
     /**
-     * This method start checking if the list is null, if not it will compare the list.size with the actual amount
-     * having some problems with this one - it wont be green when i use assertEquals(m, members) the omit is 4 ish wrong 
+     * This method start checking if the list is null, if not it will compare
+     * the list.size with the actual amount having some problems with this one -
+     * it wont be green when i use assertEquals(m, members) the omit is 4 ish
+     * wrong
      */
+    
     @Test
-    public void checkListAreEqualTest(){
-        List <GroupMember> members = facade.getAllGroupMembers();
-        List <GroupMember> m = new ArrayList();
-        m.add(m1);
-        m.add(m2);
-        m.add(m3);
-        m.add(m4);
-        m.add(m4);
-        
-        assertNotNull(members);
+    public void checkListAreEqualTest() {
+        List<Joke> jokes = facade.getAllJokes();
+        List<Joke> m = new ArrayList();
+        m.add(j1);
+        m.add(j2);
+        m.add(j3);
+        m.add(j4);
+        m.add(j5);
+
+        assertNotNull(jokes);
         assertNotNull(m);
-        assertEquals(members.size(), m.size());
+        System.out.println(m.size());
+        assertEquals(jokes.size(), m.size());
     }
-    
-    
+
     /**
-     * This method check if it is possible to get a members information by only typing their name
+     * This method check if it is possible to get a members information by only
+     * typing their name
      */
     @Test
-    public void getMemberByNameTest(){
-        List <GroupMember> member = facade.getMemberByName(m3.getName());
-        assertNotNull(member);
-        assertEquals(member.get(0).getName(), "Ahmed");
-        assertEquals(member.get(0).getColor(), "Rød");
+    public void getJokeByNameTest() {
+        List<Joke> jokes = facade.getJokeByName(j2.getName());
+        assertNotNull(jokes);
+        assertEquals(jokes.get(0).getName(),"Inside joke"); 
+        assertEquals(jokes.get(0).getColor(), "Rød");
     }
-    
-    
+
     @Test
-    public void addMemberTest(){
-        String name = "Caroline";
+    public void addJokeTest() {
+        String name = "Code joke";
         String color = "Grøn";
-        GroupMember member = facade.addMember(name, color);
-        assertEquals(6, facade.getMemberCount());
-        
-        
+        String description =  "C er sku ret sharp";
+        Joke joke = facade.addJoke(name, color, description);
+        assertEquals(6, facade.getJokeCount());
+
     }
 }
