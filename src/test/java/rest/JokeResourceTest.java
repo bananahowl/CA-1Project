@@ -107,9 +107,6 @@ public class JokeResourceTest {
                 .body("count", equalTo(3));
     }
 
-    /**
-     * This method is checking the all method by seeing if the names below exist on the list
-     */
     @Test
     public void testJokeIsOnList() {
         given()
@@ -120,12 +117,7 @@ public class JokeResourceTest {
                 .body("name", hasItems("Frøen", "Giraf", "Isterning"));
         System.out.println(j2);
     }
-    
 
-    /**
-     * This method is testing if it is possible to get a member by typing their name
-     * As you can see below the name is simone and to see if it gets the right one we are checking if simones color is gul
-     */
     @Test
     public void getMemberByNameTest() {
 
