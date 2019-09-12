@@ -8,8 +8,7 @@ and open the template in the editor.
     Author     : ahmed
 */
 body{
-    
-    
+        
 }
 table{
     border-collapse: collapse;
@@ -28,6 +27,31 @@ th{
     border:50px;
 }
 #minHead{
-    padding:10px;
+    border:5px;
+    padding:5px;
+    
+}
+.textContainer{
+    background-color: #F2E8DA;
+    padding:2%;
+    width:60%;
+    
+}
+.listContainer{
+    background-color: #F2E8DA;
+    width:60%;
+    padding:1%;
+    
+}
+.headContainer{
+    padding: 1%;
+}
+.fillContainer{
+    padding-top: 25%;
+    background-color: azure;
+    width:90%;
+    border: 15px;
+    padding-bottom: 50%;
+    
 }
 
