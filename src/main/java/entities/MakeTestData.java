@@ -33,6 +33,7 @@ public class MakeTestData {
         GroupMember member2 = new GroupMember("Emil", "Gul");
         GroupMember member3 = new GroupMember("Simone", "Gul");
         GroupMember member4 = new GroupMember("Ahmed", "Gul");
+        GroupMember member5 = new GroupMember("Arne", "Gul");
         try {
             em.getTransaction().begin();
             em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
@@ -40,6 +41,7 @@ public class MakeTestData {
             em.persist(member2);
             em.persist(member3);
             em.persist(member4);
+          //  em.persist(member5);
             em.getTransaction().commit();
             //Verify that books are managed and has been given a database id
             System.out.println(member1.getId());
