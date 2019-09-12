@@ -15,8 +15,8 @@ function LoadJoke() {
                 console.log("data", data);
                 document.getElementById('JokeBox').innerHTML = JokeToHTMLTable(data);
             });
-
 }
+
 function JokeToHTMLTable(arr) {
     var arrHTML = arr.map(item => "<tr>"
                 + "<td>" + item.name + "</td>"
