@@ -100,21 +100,21 @@ public class MemberFacade {
 //        //        memberVals.addMember("Ahmed", "Yellow");''
 //        
 //    }
-//        public void populate(){
-//            EntityManager em = emf.createEntityManager();
-//        try {
-//            em.getTransaction().begin();
-//            em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
-//            em.persist(new GroupMember("Emil", "Gul"));
-//            em.persist(new GroupMember("Smone", "Gul"));
-//            em.persist(new GroupMember("Amhed", "Gul"));
-//            em.persist(new GroupMember("Fred", "Gul"));
-//
-//            em.getTransaction().commit();
-//        } finally {
-//            em.close();
-//        }
-//    }
+        public void populate(){
+            EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
+            em.persist(new GroupMember("Emil", "Gul"));
+            em.persist(new GroupMember("Smone", "Gul"));
+            em.persist(new GroupMember("Amhed", "Gul"));
+            em.persist(new GroupMember("Fred", "Gul"));
+
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
     
 
 

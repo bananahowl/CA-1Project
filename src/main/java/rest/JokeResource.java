@@ -68,4 +68,13 @@ public class JokeResource {
         List <Joke> meme = FACADE.getJokeByName(name);
         return GSON.toJson(meme);
     } 
+    
+         @Path("/populate")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String populate() {
+        
+         FACADE.populate();
+        return "{\"msg\":\"Done\"}";
+    }
 }

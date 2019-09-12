@@ -90,4 +90,19 @@ public class JokeFacade {
             em.close();
         }
     }
+    
+            public void populate(){
+            EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            em.persist(new Joke("Isterning", "rød","Hvorfor har en isterning hverken arme eller ben? Den er vanskabt."));
+            em.persist(new Joke("Giraf", "Gul","Langhals"));
+            em.persist(new Joke("Isterning", "rød","Hvorfor har en isterning hverken arme eller ben? Den er vanskabt."));
+
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
 }
