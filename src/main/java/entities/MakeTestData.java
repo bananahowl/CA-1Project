@@ -37,6 +37,9 @@ public class MakeTestData {
         Joke j1 = new Joke("Frøen", "Grøn", "Ribbit sagde frøen haha");
         Joke j2 = new Joke("Giraf", "Gul", "Langhals");
         Joke j3 = new Joke("Isternng", "rød", "Hvorfor har en isterning hverken arme eller ben? Den er vanskabt.");
+        Joke j4 = new Joke("Shoes", "rød", "What does a pair of really fast shoes say? SHWOOOoooooees");
+        Joke j5 = new Joke("David Bowie", "rød", "Hvad var David Bowie sidste hit? nok heroine");
+        Joke j6 = new Joke("Jøde", "sort", "Hvad kalder man en billig omskæring? afrivning");
         try {
             em.getTransaction().begin();
             em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
@@ -49,6 +52,9 @@ public class MakeTestData {
             em.persist(j1);
             em.persist(j2);
             em.persist(j3);
+            em.persist(j4);
+            em.persist(j5);
+            em.persist(j6);
             em.getTransaction().commit();
             //Verify that books are managed and has been given a database id
             System.out.println(member1.getId());
