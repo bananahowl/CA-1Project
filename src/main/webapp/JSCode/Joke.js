@@ -5,7 +5,7 @@
  */
 
 
-document.getElementById("btn").onclick = LoadJoke;
+document.getElementById("Jokebtn").onclick = LoadJoke;
 function LoadJoke() {
     let url = document.location.origin + "/jpareststarter/api/Joke/all";
     fetch(url)
@@ -13,7 +13,7 @@ function LoadJoke() {
             .then(data => {
                 // Inside this callback, and only here, the response data is available
                 console.log("data", data);
-                document.getElementById('tableBox').innerHTML = JokeToHTMLTable(data);
+                document.getElementById('JokeBox').innerHTML = JokeToHTMLTable(data);
             });
 
 }
@@ -33,4 +33,5 @@ function JokeToHTMLTable(arr) {
             + arrStr + "</table>";
     return result;
 }
+
 LoadJoke();
