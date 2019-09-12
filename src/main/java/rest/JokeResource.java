@@ -52,29 +52,37 @@ public class JokeResource {
         return GSON.toJson(meme);
 
     }
-    
+
     @Path("{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getMemberById(@PathParam ("id") long id) {
+    public String getMemberById(@PathParam("id") long id) {
         Joke meme = FACADE.getJokeByID(id);
         return GSON.toJson(meme);
     }
-    
+
     @Path("name/{name}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getJokeByName(@PathParam ("name") String name) {
-        List <Joke> meme = FACADE.getJokeByName(name);
+    public String getJokeByName(@PathParam("name") String name) {
+        List<Joke> meme = FACADE.getJokeByName(name);
         return GSON.toJson(meme);
-    } 
-    
-         @Path("/populate")
+    }
+
+    @Path("/populate")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String populate() {
-        
-         FACADE.populate();
+
+        FACADE.populate();
         return "{\"msg\":\"Done\"}";
+    }
+
+    @Path("/{id}")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getJokeById(@PathParam("id") int id) {
+        Joke meme = FACADE.getJokeByID(id);
+        return GSON.toJson(meme);
     }
 }

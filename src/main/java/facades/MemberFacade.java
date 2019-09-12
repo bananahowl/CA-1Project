@@ -99,7 +99,7 @@ public class MemberFacade {
 //        //        memberVals.addMember("Emil", "Yellow");
 //        //        memberVals.addMember("Ahmed", "Yellow");''
 //        
-//    }
+//    } 
         public void populate(){
             EntityManager em = emf.createEntityManager();
         try {

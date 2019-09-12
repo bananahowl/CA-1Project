@@ -52,29 +52,29 @@ public class MemberResource {
         return GSON.toJson(member);
 
     }
-    
+
     @Path("{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getMemberById(@PathParam ("id") long id) {
+    public String getMemberById(@PathParam("id") long id) {
         GroupMember member = FACADE.getMemberByID(id);
         return GSON.toJson(member);
     }
-    
-     @Path("/populate")
+
+    @Path("/populate")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String populate() {
-        
-         FACADE.populate();
+
+        FACADE.populate();
         return "{\"msg\":\"Done\"}";
     }
-    
+
     @Path("name/{name}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getMemberByName(@PathParam ("name") String name) {
-        List <GroupMember> member = FACADE.getMemberByName(name);
+    public String getMemberByName(@PathParam("name") String name) {
+        List<GroupMember> member = FACADE.getMemberByName(name);
         return GSON.toJson(member);
     }
 }
