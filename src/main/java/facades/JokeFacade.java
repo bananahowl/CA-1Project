@@ -79,7 +79,7 @@ public class JokeFacade {
 
     public Joke addJoke(String name, String color, String description) {
         Joke meme = new Joke();
-        meme = new Joke(name, color,description);
+        meme = new Joke(name, color, description);
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -90,15 +90,25 @@ public class JokeFacade {
             em.close();
         }
     }
-    
-            public void populate(){
-            EntityManager em = emf.createEntityManager();
+
+//    public List<Joke> getRandomJokeById() {
+//        EntityManager em = emf.createEntityManager();
+//        try {
+//           TypedQuery query = em.createQuery("Select j from Joke j", Joke.class);
+//            return query.getResultList();
+//        } finally {
+//            em.close();
+//        }
+//    }
+
+    public void populate() {
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
-            em.persist(new Joke("Isterning", "rød","Hvorfor har en isterning hverken arme eller ben? Den er vanskabt."));
-            em.persist(new Joke("Giraf", "Gul","Langhals"));
-            em.persist(new Joke("Isterning", "rød","Hvorfor har en isterning hverken arme eller ben? Den er vanskabt."));
+            em.persist(new Joke("Isterning", "rød", "Hvorfor har en isterning hverken arme eller ben? Den er vanskabt."));
+            em.persist(new Joke("Giraf", "Gul", "Langhals"));
+            em.persist(new Joke("Isterning", "rød", "Hvorfor har en isterning hverken arme eller ben? Den er vanskabt."));
 
             em.getTransaction().commit();
         } finally {

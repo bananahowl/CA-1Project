@@ -78,11 +78,11 @@ public class JokeResource {
         return "{\"msg\":\"Done\"}";
     }
 
-    @Path("/{id}")
+    @Path("random")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getJokeById(@PathParam("id") int id) {
-        Joke meme = FACADE.getJokeByID(id);
-        return GSON.toJson(meme);
+    public String getRandomJoke() {
+        List<Joke> all = FACADE.getAllJokes();  
+        return GSON.toJson(all.get((int) Math.ceil(Math.random() * all.size()) - 1));
     }
 }
