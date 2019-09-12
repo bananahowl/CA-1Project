@@ -96,6 +96,7 @@ public class MemberFacadeTest {
     /**
      * This method check if all of the groupmembers exists on the list
      */
+    
     @Test
     public void countMembersTest() {
         assertEquals(5, facade.getMemberCount(), "Expects five rows in the database");

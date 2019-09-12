@@ -17,11 +17,6 @@
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="ax2"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-<!--          <property name="javax.persistence.jdbc.url" value="jdbc:mysql://165.22.67.246:3306/Week1Day5"/>
-        <property name="javax.persistence.jdbc.user" value="emil"/>
-        <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-        <property name="javax.persistence.jdbc.password" value="skolekode1235"/>
-        <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->
     </properties>
   </persistence-unit>
 </persistence>
