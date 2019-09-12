@@ -27,13 +27,16 @@ public class MakeTestData {
     }
 
     public static void main(String[] args) {
-               EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
         EntityManager em = emf.createEntityManager();
         GroupMember member1 = new GroupMember("Fred", "Gul");
         GroupMember member2 = new GroupMember("Emil", "Gul");
         GroupMember member3 = new GroupMember("Simone", "Gul");
         GroupMember member4 = new GroupMember("Ahmed", "Gul");
         GroupMember member5 = new GroupMember("Arne", "Gul");
+        Joke j1 = new Joke("Frøen", "Grøn", "Ribbit sagde frøen haha");
+        Joke j2 = new Joke("Giraf", "Gul", "Langhals");
+        Joke j3 = new Joke("Isternng", "rød", "Hvorfor har en isterning hverken arme eller ben? Den er vanskabt.");
         try {
             em.getTransaction().begin();
             em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
@@ -41,7 +44,11 @@ public class MakeTestData {
             em.persist(member2);
             em.persist(member3);
             em.persist(member4);
-          //  em.persist(member5);
+            //  em.persist(member5);
+            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            em.persist(j1);
+            em.persist(j2);
+            em.persist(j3);
             em.getTransaction().commit();
             //Verify that books are managed and has been given a database id
             System.out.println(member1.getId());
