@@ -1,6 +1,8 @@
 package rest;
 
 import entities.GroupMember;
+import entities.Joke;
+import facades.JokeFacade;
 import facades.MemberFacade;
 import utils.EMF_Creator;
 import io.restassured.RestAssured;
@@ -39,12 +41,10 @@ public class JokeResourceTest {
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
     private static EntityManagerFactory emf;
-    private static MemberFacade facade;
-    private GroupMember m1 = new GroupMember("Simone", "Gul");
-    private GroupMember m2 = new GroupMember("Grethe", "Grøn");
-    private GroupMember m3 = new GroupMember("Ahmed", "Rød");
-    private GroupMember m4 = new GroupMember("Frederik", "Gul");
-    private GroupMember m5 = new GroupMember("Emil", "Gul");
+    private static JokeFacade facade;
+    private Joke j1 = new Joke("Frøen", "Grøn","Ribbit sagde frøen haha");
+    private Joke j2 = new Joke("Giraf", "Gul","Langhals");
+    private Joke j3 = new Joke("Isterning", "rød","Hvorfor har en isterning hverken arme eller ben? Den er vanskabt.");
 
     static HttpServer startServer() {
         ResourceConfig rc = ResourceConfig.forApplication(new ApplicationConfig());
@@ -80,12 +80,10 @@ public class JokeResourceTest {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("GroupMember.deleteAllRows").executeUpdate();
-            em.persist(m1);
-            em.persist(m2);
-            em.persist(m3);
-            em.persist(m4);
-            em.persist(m5);
+            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            em.persist(j1);
+            em.persist(j2);
+            em.persist(j3);
 
             em.getTransaction().commit();
         } finally {
@@ -96,31 +94,31 @@ public class JokeResourceTest {
     @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
-        given().when().get("/member").then().statusCode(200);
+        given().when().get("/Joke").then().statusCode(200);
     }
 
     @Test
     public void testCount() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/member/count").then()
+                .get("/Joke/count").then()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("count", equalTo(5));
+                .body("count", equalTo(3));
     }
 
     /**
      * This method is checking the all method by seeing if the names below exist on the list
      */
     @Test
-    public void testMembersIsOnList() {
+    public void testJokeIsOnList() {
         given()
                 .contentType("application/json")
-                .get("/member/all").then()
+                .get("/Joke/all").then()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("name", hasItems("Ahmed", "Grethe", "Simone"));
-        System.out.println(m2);
+                .body("name", hasItems("Frøen", "Giraf", "Isterning"));
+        System.out.println(j2);
     }
     
 
@@ -132,29 +130,11 @@ public class JokeResourceTest {
     public void getMemberByNameTest() {
 
         when().
-                get("/member/name/Simone").
+                get("/Joke/name/Giraf").
                 then().
                 statusCode(200).
                 body("color", hasItem("Gul"));
     }
-    
-    
-    /**
-     * This method will get a member but its id 
-     * NOTICE: Somehow the id is changing and therefore it wont work at all times and are uncomment
-     */
-    
-    /*
-    @Test
-    public void getMemberByIDTest() {
-
-        when().
-                get("/member/368").
-                then().
-                statusCode(200).
-                body("name", hasItem("Grethe"));
-    }*/
-    
     
     
 }
