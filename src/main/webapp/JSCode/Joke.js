@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+//"https://pencilash.com/Member/"
 
 document.getElementById("Jokebtn").onclick = LoadJoke;
 function LoadJoke() {
-    let url = "https://pencilash.com/Member/" + "/Member/api/Joke/all";
+    let url =  document.location.origin + "/Member/api/Joke/all";
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {
@@ -38,7 +38,7 @@ LoadJoke();
 
 
 document.getElementById("RandomJokebtn").onclick = function (e) {
-    let url = document.location.origin + "/jpareststarter/api/Joke/random"
+    let url = document.location.origin + "/Member/api/Joke/random"
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {
