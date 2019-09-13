@@ -7,7 +7,7 @@
 
 document.getElementById("Jokebtn").onclick = LoadJoke;
 function LoadJoke() {
-    let url = "https://pencilash.com/Member/" + "/Member/api/Joke/all";
+    let url = "https://pencilash.com" + "/Member/api/Joke/all";
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {
@@ -38,7 +38,7 @@ LoadJoke();
 
 
 document.getElementById("RandomJokebtn").onclick = function (e) {
-    let url = document.location.origin + "/Member/api/Joke/random"
+    let url = "https://pencilash.com" + "/Member/api/Joke/random"
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {
