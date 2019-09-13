@@ -114,7 +114,7 @@ public class JokeFacade {
             em.persist(new Joke("Jøde", "sort", "Hvad kalder man en billig omskæring? afrivning"));
             em.persist(new Joke("Programming", "grøn", "I went to a street where the houses were numbered 8k, 16k, 32k, 64k, 128k, 256k and 512k.\n" +
 "It was a trip down Memory Lane."));
-            em.persist(new Joke("lukusdum", "gul", "Damen der bruger 1500 på energi drik : jeg bruger bruger mig særligt meget for vand.\n"));
+            em.persist(new Joke("lukusdum", "gul", "Damen der bruger 1500 på energi drik : jeg bryder mig særligt ikke meget for vand.\n"));
             em.getTransaction().commit();
         } finally {
             em.close();
