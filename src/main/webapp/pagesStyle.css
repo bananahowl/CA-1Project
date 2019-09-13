@@ -12,15 +12,17 @@ body{
 }
 table{
     border-collapse: collapse;
+    width: 50%;
 
 }
 table,tr,th{
     border: 1px solid black;
-    background-color: bisque;
+    background-color: lightblue;
+    
 }
 th{
     
-    width: 150px;
+    width: 50px;
 }
 #container{
     padding: 50px;
@@ -32,13 +34,13 @@ th{
     
 }
 .textContainer{
-    background-color: #F2E8DA;
+    background-color: lightgray;
     padding:2%;
     width:60%;
     
 }
 .listContainer{
-    background-color: #F2E8DA;
+    background-color: lightgray;
     width:60%;
     padding:1%;
     

@@ -25,7 +25,7 @@ function JokeToHTMLTable(arr) {
                 + "<td>" + item.color + "</td>"
                 + "</tr>");
     var arrStr = arrHTML.join('');
-    var result = "<table class=\"table\"><tr>"
+    var result = "<table class=\"table table-striped\"><tr>"
             + "<th width = 100px>Name</th>"
             + "<th width = 100px>Joke.nr</th>"
             + "<th width = 100px>Description</th>"

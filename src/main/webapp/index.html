@@ -3,29 +3,31 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+        <link rel=" stylesheet" type="text/css" href="pagesStyle.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <h1>This is the index page </h1>
+        <h1>Welcome</h1>
         <div>
-            <button id="btn"> Get data</button>
+
             <div id="tableBox" class="table-responsive"></div>
-            <ul>
-                <li>
-                    <a href ="member.html" >Link to member page</a>
-                </li>
-                <li>
-                    <a href ="jokes.html" >Link to jokes page</a>
-                </li>
-                <li>
-                    <a href ="contract.html" >Link to contract page</a>
-                </li>
-                <li>
-                    <a href ="https://github.com/bananahowl/CA-1Project" >Link to the project repository</a>
-                </li>
-            </ul>
+            <button id="btn" class="btn btn-secondary"> Get data</button>
+
+            <button type="button" class="btn btn-secondary">
+                <a href ="jokes.html"  style="color:inherit">Jokes</a>
+            </button>
+
+            <button type="button" class="btn btn-secondary">
+                <a href ="contract.html"  style="color:inherit">GroupContract</a>
+            </button>
+
+            <button type="button" class="btn btn-secondary">
+                <a href ="https://github.com/bananahowl/CA-1Project"  style="color:inherit" >Github repository</a>
+            </button>
+
         </div>
-        <script src="JSCode/GroupMember.js"> </script>
+        <script src="JSCode/GroupMember.js">
+        </script>
     </body>
 </html>

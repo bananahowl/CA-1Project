@@ -22,10 +22,10 @@ function MemberToHTMLTable(arr) {
                 + "<td>" + item.color + "</td>"
                 + "</tr>");
     var arrStr = arrHTML.join('');
-    var result = "<table class=\"table\"><tr>"
-            + "<th width = 100px>Name</th>"
-            + "<th width = 100px>Student ID</th>"
-            + "<th width = 100px>Color</th>"
+    var result = "<table class=\"table table-striped\"><tr>"
+            + "<th width = 10%>Name</th>"
+            + "<th width = 10%>Student ID</th>"
+            + "<th width = 10%>Color</th>"
             + arrStr + "</table>";
     return result;
 }

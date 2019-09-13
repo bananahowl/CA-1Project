@@ -7,8 +7,6 @@ package entities;
 
 import entities.GroupMember;
 import facades.MemberFacade;
-import facades.MemberFacade;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

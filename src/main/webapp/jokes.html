@@ -11,21 +11,26 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel=" stylesheet" type="text/css" href="pagesStyle.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!--
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         -->
     </head>
     <body>
-        <div id ="minHead">
-            <a href="index.html"> back to main page </a>
-        </div>
-        <h1> Jokes page </h1>
+        <h1> Joke </h1>
+        <div id="JokeBox" class="table-responsive"></div>
+
+        <button id="Jokebtn" class="btn btn-secondary"> Get Joke</button>
         
-            <button id="Jokebtn"> Get Joke</button>
-            <div id="JokeBox" class="table-responsive"></div>
+        <button id="RandomJokebtn" class="btn btn-secondary"> Get Random Joke</button>
         
-            <button id="RandomJokebtn"> Get Random Joke</button>
-            <div id="RandomJokeBox" class="table-responsive"></div>
+        <button type="button" class="btn btn-secondary">
+            <a href="index.html" style="color:inherit">Back To Main-page</a>
+        </button>
+        
+        <div id="RandomJokeBox" class="table-responsive"></div>
         <script src="JSCode/Joke.js"></script>
+        
+        
     </body>
 </html>
