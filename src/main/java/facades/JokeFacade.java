@@ -106,8 +106,8 @@ public class JokeFacade {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
-            em.persist(new Joke("Frøen", "Grøn", "Ribbit sagde frøen haha"));
-            em.persist(new Joke("Giraf", "Gul", "Langhals"));
+            em.persist(new Joke("Farjoke", "Grøn", "'Hej far jeg sulten!' sagde knægten. 'Hej sulten, jeg er far!'"));
+            em.persist(new Joke("Blondinen", "Gul", "Hvorfor faldt blondinen ned fra computerbordet? Hun prøvede at gå på nettet"));
             em.persist(new Joke("Isterning", "rød", "Hvorfor har en isterning hverken arme eller ben? Den er vanskabt."));
             em.persist(new Joke("Shoes", "rød", "What does a pair of really fast shoes say? SHWOOOoooooees"));
             em.persist(new Joke("David Bowie", "rød", "Hvad var David Bowie sidste hit? nok heroine"));
