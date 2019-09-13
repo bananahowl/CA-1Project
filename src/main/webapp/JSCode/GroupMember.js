@@ -6,7 +6,8 @@
 //"https://pencilash.com/Member/"
 document.getElementById("btn").onclick = LoadMember;
 function LoadMember() {
-    let url =  document.location.origin + "/Member/api/member/all";
+
+    let url = "https://pencilash.com" + "/Member/api/member/all";
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {
