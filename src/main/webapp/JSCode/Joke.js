@@ -54,7 +54,7 @@ document.getElementById("RandomJokebtn").onclick = function (e) {
     else{
         add = "https://pencilash.com";
     }
-    let url = add + "/Member/api/Joke/all";
+    let url = add + "/Member/api/Joke/random";
 
     fetch(url)
             .then(res => res.json()) //get at json array 
