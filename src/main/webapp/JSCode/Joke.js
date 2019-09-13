@@ -8,7 +8,14 @@
 document.getElementById("Jokebtn").onclick = LoadJoke;
 function LoadJoke() {
 
-    let url = "https://pencilash.com" + "/Member/api/Joke/all";
+    let add ="";
+    if(document.location.origin == "http://localhost:8080"){
+        add = "http://localhost:8080";
+    }
+    else{
+        add = "https://pencilash.com";
+    }
+    let url = add + "/Member/api/member/all";
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {
@@ -40,7 +47,14 @@ LoadJoke();
 
 document.getElementById("RandomJokebtn").onclick = function (e) {
 
-    let url = "https://pencilash.com" + "/Member/api/Joke/random"
+    let add ="";
+    if(document.location.origin == "http://localhost:8080"){
+        add = "http://localhost:8080";
+    }
+    else{
+        add = "https://pencilash.com";
+    }
+    let url = add + "/Member/api/member/all";
 
     fetch(url)
             .then(res => res.json()) //get at json array 
