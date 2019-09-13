@@ -7,7 +7,7 @@
 
 document.getElementById("Jokebtn").onclick = LoadJoke;
 function LoadJoke() {
-    let url = document.location.origin + "/jpareststarter/api/Joke/all";
+    let url = document.location.origin + "/Member/api/Joke/all";
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {

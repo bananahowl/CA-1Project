@@ -36,7 +36,7 @@ public class MakeTestData {
         GroupMember member5 = new GroupMember("Arne", "Gul");
         Joke j1 = new Joke("Frøen", "Grøn", "Ribbit sagde frøen haha");
         Joke j2 = new Joke("Giraf", "Gul", "Langhals");
-        Joke j3 = new Joke("Isternng", "rød", "Hvorfor har en isterning hverken arme eller ben? Den er vanskabt.");
+        Joke j3 = new Joke("Isterning", "rød", "Hvorfor har en isterning hverken arme eller ben? Den er vanskabt.");
         Joke j4 = new Joke("Shoes", "rød", "What does a pair of really fast shoes say? SHWOOOoooooees");
         Joke j5 = new Joke("David Bowie", "rød", "Hvad var David Bowie sidste hit? nok heroine");
         Joke j6 = new Joke("Jøde", "sort", "Hvad kalder man en billig omskæring? afrivning");
