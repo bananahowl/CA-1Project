@@ -3,11 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+//"https://pencilash.com/Member/"
 
 document.getElementById("Jokebtn").onclick = LoadJoke;
 function LoadJoke() {
-    let url = document.location.origin + "/jpareststarter/api/Joke/all";
+
+    let add ="";
+    if(document.location.origin == "http://localhost:8080"){
+        add = "http://localhost:8080";
+    }
+    else{
+        add = "https://pencilash.com";
+    }
+    let url = add + "/Member/api/Joke/all";
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {
@@ -38,7 +46,16 @@ LoadJoke();
 
 
 document.getElementById("RandomJokebtn").onclick = function (e) {
-    let url = document.location.origin + "/jpareststarter/api/Joke/random"
+
+    let add ="";
+    if(document.location.origin == "http://localhost:8080"){
+        add = "http://localhost:8080";
+    }
+    else{
+        add = "https://pencilash.com";
+    }
+    let url = add + "/Member/api/Joke/all";
+
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {
@@ -48,16 +65,3 @@ document.getElementById("RandomJokebtn").onclick = function (e) {
             });
 
 }
-
-
-document.getElementById("btn2").onclick = function (e) {
-    var url = document.location.origin + "/teamone-ca1/api/joke/random";
-    fetch(url)
-            .then(res => res.json()) //in flow1, just do it
-            .then(data => {
-                // Inside this callback, and only here, the response data is available
-                console.log("data", data);
-                document.getElementById("d1").innerHTML = data.joke;
-
-            });
-};

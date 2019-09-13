@@ -15,7 +15,7 @@ table{
     width: 50%;
 
 }
-table,tr,th{
+table,tr,th,td{
     border: 1px solid black;
     background-color: lightblue;
     

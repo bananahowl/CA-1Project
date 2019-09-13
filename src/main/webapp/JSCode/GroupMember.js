@@ -3,9 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//"https://pencilash.com/Member/"
 document.getElementById("btn").onclick = LoadMember;
 function LoadMember() {
-    let url = document.location.origin + "/jpareststarter/api/member/all";
+    let add ="";
+    if(document.location.origin == "http://localhost:8080"){
+        add = "http://localhost:8080";
+    }
+    else{
+        add = "https://pencilash.com";
+    }
+    let url = add + "/Member/api/member/all";
+    
     fetch(url)
             .then(res => res.json()) //get at json array 
             .then(data => {
